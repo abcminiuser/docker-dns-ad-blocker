@@ -40,7 +40,7 @@ docker run -d --restart=always -p 53:53/tcp -p 53:53/udp -e "AUTO_UPDATE=0" oznu
 
 ## AD Blocking
 
-This image is using the blacklists created by [oznu/dns-zone-blacklist](https://github.com/oznu/dns-zone-blacklist) and [StevenBlack/hosts](https://github.com/StevenBlack/hosts).
+This image is using the blacklists created by [StevenBlack/hosts](https://github.com/StevenBlack/hosts).
 
 The DNS server works by returning ```0.0.0.0``` when a DNS lookup is made by a browser or device to a blacklisted domain. ```0.0.0.0``` is defined as a non-routable meta-address used to designate an invalid, unknown, or non applicable target which results in the browser rejecting the request.
 
