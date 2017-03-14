@@ -7,6 +7,9 @@ sha256sum /etc/hosts.dnsmasq.new > /etc/hosts.dnsmasq.new.sha256
 # Compare the remote checksum to the local file
 sha256sum -c /etc/hosts.dnsmasq.new.sha256 /etc/hosts.dnsmasq
 if [[ $? != 0 ]] ; then
+  # Replace hosts file with the updated list
+  mv /etc/hosts.dnsmasq.new /etc/hosts.dnsmasq
+
   # Kill the main process. Docker will bring back up the container when restart=always is set.
   pkill dnsmasq
 fi
