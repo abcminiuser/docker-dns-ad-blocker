@@ -1,15 +1,12 @@
 #!/bin/sh
 
-# Download the checksum on the remote release
-CHECKSUM=$(curl -k "https://raw.githubusercontent.com/oznu/dns-zone-blacklist/master/dnsmasq/dnsmasq.blacklist.checksum")
+# Download latest blocklist
+curl -k -o /etc/hosts.dnsmasq.new "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
+sha256sum /etc/hosts.dnsmasq.new > /etc/hosts.dnsmasq.new.sha256
 
 # Compare the remote checksum to the local file
-echo "${CHECKSUM}  /etc/dnsmasq.blacklist" | sha256sum -c -
-
+sha256sum -c /etc/hosts.dnsmasq.new.sha256 /etc/hosts.dnsmasq
 if [[ $? != 0 ]] ; then
-  # Update Available, download it before restarting the container to reduce down time
-  curl -k -o /etc/dnsmasq.blacklist "https://raw.githubusercontent.com/oznu/dns-zone-blacklist/master/dnsmasq/dnsmasq.blacklist"
-
   # Kill the main process. Docker will bring back up the container when restart=always is set.
   pkill dnsmasq
 fi
