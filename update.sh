@@ -2,10 +2,9 @@
 
 # Download latest blocklist
 curl -k -o /etc/hosts.dnsmasq.new "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
-sha256sum /etc/hosts.dnsmasq.new > /etc/hosts.dnsmasq.new.sha256
 
-# Compare the remote checksum to the local file
-sha256sum -c /etc/hosts.dnsmasq.new.sha256 /etc/hosts.dnsmasq
+# Compare the remote blocklist to the local blocklist
+cmp -s /etc/hosts.dnsmasq.new /etc/hosts.dnsmasq
 if [[ $? != 0 ]] ; then
   # Replace hosts file with the updated list
   mv /etc/hosts.dnsmasq.new /etc/hosts.dnsmasq
