@@ -1,4 +1,4 @@
-FROM alpine:3.4
+FROM alpine:latest
 RUN apk --no-cache add tzdata dnsmasq curl
 
 EXPOSE 53 53/udp
