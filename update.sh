@@ -10,8 +10,7 @@ if [[ $? != 0 ]] ; then
   mv /etc/hosts.dnsmasq.new /etc/hosts.dnsmasq
 
   # Convert ipv4 host blocking entries into additional ipv6 blocking entries
-  sort /etc/hosts.dnsmasq.new | uniq | grep "^0" > /etc/hosts_ipv6.dnsmasq
-  sort /etc/hosts.dnsmasq.new | uniq | grep "^0" | sed "s/0\.0\.0\.0/::/g" >> /etc/hosts_ipv6.dnsmasq
+  sort /etc/hosts.dnsmasq | uniq | grep "^0" | sed "s/0\.0\.0\.0/::/g" > /etc/hosts_ipv6.dnsmasq
 
   # Kill the main process. Docker will bring back up the container when restart=always is set.
   pkill dnsmasq
