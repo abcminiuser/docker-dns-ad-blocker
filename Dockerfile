@@ -1,5 +1,5 @@
 FROM alpine:latest
-RUN apk --no-cache add tzdata dnsmasq curl
+RUN apk --no-cache add tzdata dnsmasq-dnssec curl
 
 EXPOSE 53 53/udp
 

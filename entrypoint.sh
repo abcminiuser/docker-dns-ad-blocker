@@ -20,6 +20,13 @@ else
   sed -i "s/.*log-queries.*/#log-queries/" /etc/dnsmasq.conf
 fi
 
+# Enable/Disable DNSSEC
+if [[ "$DNSSEC" -eq "1" ]]; then
+  sed -i "s/.*dnssec/dnssec/" /etc/dnsmasq.conf
+else
+  sed -i "s/.*dnssec/#dnssec/" /etc/dnsmasq.conf
+fi
+
 # Download the latest blocklist
 /sbin/update.sh
 

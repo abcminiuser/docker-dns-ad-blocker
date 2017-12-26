@@ -55,6 +55,11 @@ To disable automatic updates set ```AUTO_UPDATE=0```:
 docker run -d --restart=always -p 53:53/tcp -p 53:53/udp -e "AUTO_UPDATE=0" abcminiuser/dns-ad-blocker
 ```
 
+To enable optional DNSSEC domain validation, set ```DNSSEC=1```:
+```
+docker run -d --restart=always -p 53:53/tcp -p 53:53/udp -e "DNSSEC=1" abcminiuser/dns-ad-blocker
+```
+
 ## Ad Blocking
 
 This image is using the blacklists created by
