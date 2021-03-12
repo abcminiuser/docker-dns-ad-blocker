@@ -9,7 +9,7 @@ BLOCKLIST_TARGET_FILE_IPV6="/etc/hosts_ipv6.dnsmasq"
 
 # Download latest blocklist
 echo "Fetching latest blocklist..."
-curl --progress -k -o $BLOCKLIST_TEMP_FILE $REMOTE_BLOCKLIST_URL
+curl -k -o $BLOCKLIST_TEMP_FILE $REMOTE_BLOCKLIST_URL
 echo "Received blocklist, $(grep "^0" $BLOCKLIST_TEMP_FILE | wc -l) entries."
 
 # Compare the remote blocklist to the local blocklist
